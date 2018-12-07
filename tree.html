@@ -5,6 +5,17 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
+	<div class="controls">
+		<h2>Controls</h2>
+		<p>Customise your tree!</p>
+		<select name="toppers">
+			<option value=" "></option>
+			<option value="👼">👼</option>
+			<option value="⭐">⭐</option>
+			<option value="🕯️">🕯️</option>
+		</select>
+		<button id="add-present">Add a present!</button>
+	</div>
 	<div class="tree-container">
 		<div class="tree">
 			<div class="topper"></div>
@@ -17,24 +28,23 @@
 			        <rect id="Rectangle" fill="#8B572A" x="180" y="435" width="60" height="72"></rect>
 			    </g>
 			</svg>
+			<div class="present-container"></div>
 		</div>
-	</div>
-	<div class="controls">
-		<select name="toppers">
-			<option value="👼">👼</option>
-			<option value="⭐">⭐</option>
-			<option value="🕯️">🕯️</option>
-		</select>
 	</div>
 	<script>
 		const topSelector = document.querySelector('select');
 		const topper = document.querySelector('.topper');
-
-		function handleChange() {
+		function changeTopper() {
 			topper.textContent = topSelector.value;
 		}
+		topSelector.addEventListener('change', changeTopper);
 
-		topSelector.addEventListener('change', handleChange);
+		const addButton = document.getElementById('add-present');
+		const presents = document.querySelector('.present-container');
+		function addPresent() {
+			presents.textContent += "🎁";
+		}
+		addButton.addEventListener('click', addPresent);
 	</script>
 </body>
 </html>

@@ -1,4 +1,9 @@
 
+body {
+	display: flex;
+	justify-content: space-around;
+}
+
 .tree-container {
 	width: 100%;
 	height: 100vh;
@@ -7,8 +12,17 @@
 	justify-content: center;
 }
 
+.tree {
+	width: 420px;
+}
+
 .topper {
   width: 100%;
   text-align: center;
   font-size: 2.4em;
+}
+
+.present-container {
+	font-size: 3em;
+	text-align: center;
 }
