@@ -8,13 +8,21 @@
 	<div class="controls">
 		<h2>Controls</h2>
 		<p>Customise your tree!</p>
-		<select name="toppers">
-			<option value=" "></option>
-			<option value="👼">👼</option>
-			<option value="⭐">⭐</option>
-			<option value="🕯️">🕯️</option>
-		</select>
-		<button id="add-present">Add a present!</button>
+		<div class="control">
+			<select name="toppers">
+				<option value=" "></option>
+				<option value="👼">👼</option>
+				<option value="⭐">⭐</option>
+				<option value="🕯️">🕯️</option>
+			</select>
+		</div>
+		<div class="control">
+			<button id="add-present">Add a present! 🎁</button>
+		</div>
+		<div class="control">
+			<label for="colour">Change bauble colour</label>
+			<input id="colour" type="color" name="colour" value="#ff0000">
+		</div>
 	</div>
 	<div class="tree-container">
 		<div class="tree">
@@ -26,19 +34,24 @@
 				        <polygon id="Triangle" fill="#507E1A" points="226 135 406 315 46 315"></polygon>
 				        <polygon id="Triangle" fill="#507E1A" points="226 225 436 435 16 435"></polygon>
 				        <rect id="Rectangle" fill="#8B572A" x="196" y="435" width="60" height="72"></rect>
-				        <circle id="Oval" fill="#D0021B" cx="346" cy="136" r="16"></circle>
-				        <circle id="Oval" fill="#D0021B" cx="46" cy="331" r="16"></circle>
-				        <circle id="Oval" fill="#D0021B" cx="106" cy="136" r="16"></circle>
-				        <circle id="Oval" fill="#D0021B" cx="74" cy="226" r="16"></circle>
-				        <circle id="Oval" fill="#D0021B" cx="376" cy="226" r="16"></circle>
-				        <circle id="Oval" fill="#D0021B" cx="406" cy="331" r="16"></circle>
-				        <circle id="Oval" fill="#D0021B" cx="16" cy="451" r="16"></circle>
-				        <circle id="Oval" fill="#D0021B" cx="436" cy="451" r="16"></circle>
+				        <circle cx="346" fill="var(--colour)" cy="136" r="16"></circle>
+				        <circle cx="46" fill="var(--colour)" cy="331" r="16"></circle>
+				        <circle cx="106" fill="var(--colour)" cy="136" r="16"></circle>
+				        <circle cx="74" fill="var(--colour)" cy="226" r="16"></circle>
+				        <circle cx="376" fill="var(--colour)" cy="226" r="16"></circle>
+				        <circle cx="406" fill="var(--colour)" cy="331" r="16"></circle>
+				        <circle cx="16" fill="var(--colour)" cy="451" r="16"></circle>
+				        <circle cx="436" fill="var(--colour)" cy="451" r="16"></circle>
 				    </g>
 				</svg>
 			<div class="present-container"></div>
 		</div>
 	</div>
+	<style>
+		:root {
+			--colour: #ff0000;
+		}
+	</style>
 	<script>
 		const topSelector = document.querySelector('select');
 		const topper = document.querySelector('.topper');
@@ -53,6 +66,13 @@
 			presents.textContent += "🎁";
 		}
 		addButton.addEventListener('click', addPresent);
+
+		const colourPicker = document.getElementById('colour');
+		const circles = document.querySelectorAll('circle');
+		function changeColour() {
+			document.documentElement.style.setProperty('--colour', colourPicker.value);
+		}
+		colourPicker.addEventListener('change', changeColour);
 	</script>
 </body>
 </html>
