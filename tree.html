@@ -30,17 +30,20 @@
 			<select name="decorations" class="decorations">
 				<option value=""> </option>
 				<option value="⛄">⛄</option>
+				<option value="🎅🏼">🎅🏼</option>
+				<option value="🌟">🌟</option>
 				<option value="🕯️">🕯️</option>
 				<option value="🔔">🔔</option>
 				<option value="🎄">🎄</option>
 				<option value="❄️">❄️</option>
+				<option value="🎁">🎁</option>
 			</select>
 		</div>
 	</div>
 	<div class="tree-container">
 		<div class="tree">
 			<div class="topper">⭐</div>
-				<svg width="452px" height="520px" viewBox="0 0 452 520">
+				<svg width="452px" height="520px" viewBox="0 0 452 520" class="main-tree">
 				    <defs>
 				        <rect id="path-1" x="196" y="449" width="60" height="72"></rect>
 				        <filter x="-16.7%" y="-13.9%" width="133.3%" height="127.8%" filterUnits="objectBoundingBox" id="filter-2">
@@ -184,6 +187,7 @@
 				            <use fill="black" fill-opacity="1" filter="url(#filter-26)" xlink:href="#path-25"></use>
 				        </g>
 				    </g>
+					<text x="150" y="100" style="font-size: 2em; z-index: 100">🎁</text>
 				</svg>
 			<div class="present-container"></div>
 		</div>
@@ -216,17 +220,18 @@
 		colourPickers.forEach(picker => picker.addEventListener('change', changeColour));
 
 		const decSelector = document.querySelector('.decorations');
-		const tree = document.querySelector('.tree');
+		const mainTree = document.querySelector('.main-tree');
 		function placeDecoration(e) {
 			if (decSelector.value !== "") {
-				const decoration = document.createElement('div');
+				const decoration = document.createElement('text');
 				decoration.textContent = decSelector.value;
-				decoration.classList.add('decoration');
-				decoration.setAttribute("style", `top: ${e.clientY}px; left: ${e.clientX - 15}px;`);
-				tree.appendChild(decoration);
+				decoration.setAttribute("x", `${e.clientY}`);
+				decoration.setAttribute("y", `${e.clientX}`);
+				decoration.setAttribute("style", "font-size: 2em; z-index: 100");
+				mainTree.appendChild(decoration);
 			}
 		}
-		tree.addEventListener('click', placeDecoration);
+		mainTree.addEventListener('click', placeDecoration);
 	</script>
 </body>
 </html>
