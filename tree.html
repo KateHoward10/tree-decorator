@@ -20,8 +20,12 @@
 			<button id="add-present">Add a present! 🎁</button>
 		</div>
 		<div class="control">
-			<label for="colour">Change bauble colour</label>
-			<input id="colour" type="color" name="colour" value="#ff0000">
+			<label for="primary-colour">Change primary bauble colour</label>
+			<input class="colour-picker" type="color" name="primary-colour" value="#ff0000">
+		</div>
+		<div class="control">
+			<label for="secondary-colour">Change secondary bauble colour</label>
+			<input class="colour-picker" type="color" name="secondary-colour" value="#DAA520">
 		</div>
 	</div>
 	<div class="tree-container">
@@ -34,14 +38,14 @@
 				        <polygon id="Triangle" fill="#507E1A" points="226 135 406 315 46 315"></polygon>
 				        <polygon id="Triangle" fill="#507E1A" points="226 225 436 435 16 435"></polygon>
 				        <rect id="Rectangle" fill="#8B572A" x="196" y="435" width="60" height="72"></rect>
-				        <circle cx="346" fill="var(--colour)" cy="136" r="16"></circle>
-				        <circle cx="46" fill="var(--colour)" cy="331" r="16"></circle>
-				        <circle cx="106" fill="var(--colour)" cy="136" r="16"></circle>
-				        <circle cx="74" fill="var(--colour)" cy="226" r="16"></circle>
-				        <circle cx="376" fill="var(--colour)" cy="226" r="16"></circle>
-				        <circle cx="406" fill="var(--colour)" cy="331" r="16"></circle>
-				        <circle cx="16" fill="var(--colour)" cy="451" r="16"></circle>
-				        <circle cx="436" fill="var(--colour)" cy="451" r="16"></circle>
+				        <circle cx="106" fill="var(--primary-colour)" cy="136" r="16"></circle>
+				        <circle cx="346" fill="var(--secondary-colour)" cy="136" r="16"></circle>
+				        <circle cx="74" fill="var(--secondary-colour)" cy="226" r="16"></circle>
+				        <circle cx="376" fill="var(--primary-colour)" cy="226" r="16"></circle>
+				        <circle cx="46" fill="var(--primary-colour)" cy="331" r="16"></circle>
+				        <circle cx="406" fill="var(--secondary-colour)" cy="331" r="16"></circle>
+				        <circle cx="16" fill="var(--secondary-colour)" cy="451" r="16"></circle>
+				        <circle cx="436" fill="var(--primary-colour)" cy="451" r="16"></circle>
 				    </g>
 				</svg>
 			<div class="present-container"></div>
@@ -49,7 +53,8 @@
 	</div>
 	<style>
 		:root {
-			--colour: #ff0000;
+			--primary-colour: #ff0000;
+			--secondary-colour: #DAA520;
 		}
 	</style>
 	<script>
@@ -67,12 +72,11 @@
 		}
 		addButton.addEventListener('click', addPresent);
 
-		const colourPicker = document.getElementById('colour');
-		const circles = document.querySelectorAll('circle');
+		const colourPickers = document.querySelectorAll('.colour-picker');
 		function changeColour() {
-			document.documentElement.style.setProperty('--colour', colourPicker.value);
+			document.documentElement.style.setProperty(`--${this.name}`, this.value);
 		}
-		colourPicker.addEventListener('change', changeColour);
+		colourPickers.forEach(picker => picker.addEventListener('change', changeColour));
 	</script>
 </body>
 </html>
