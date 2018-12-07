@@ -9,10 +9,9 @@
 		<h2>Controls</h2>
 		<p>Customise your tree!</p>
 		<div class="control">
-			<select name="toppers">
+			<select name="toppers" class="toppers">
 				<option value="⭐">⭐</option>
 				<option value="👼">👼</option>
-				<option value="🕯️">🕯️</option>
 			</select>
 		</div>
 		<div class="control">
@@ -25,6 +24,17 @@
 		<div class="control">
 			<label for="secondary-colour">Change secondary bauble colour</label>
 			<input class="colour-picker" type="color" name="secondary-colour" value="#DAA520">
+		</div>
+		<div class="control">
+			<p>Add a new decoration! Select one here, then click on the tree</p>
+			<select name="decorations" class="decorations">
+				<option value=""> </option>
+				<option value="⛄">⛄</option>
+				<option value="🕯️">🕯️</option>
+				<option value="🔔">🔔</option>
+				<option value="🎄">🎄</option>
+				<option value="❄️">❄️</option>
+			</select>
 		</div>
 	</div>
 	<div class="tree-container">
@@ -185,7 +195,7 @@
 		}
 	</style>
 	<script>
-		const topSelector = document.querySelector('select');
+		const topSelector = document.querySelector('.toppers');
 		const topper = document.querySelector('.topper');
 		function changeTopper() {
 			topper.textContent = topSelector.value;
@@ -204,6 +214,19 @@
 			document.documentElement.style.setProperty(`--${this.name}`, this.value);
 		}
 		colourPickers.forEach(picker => picker.addEventListener('change', changeColour));
+
+		const decSelector = document.querySelector('.decorations');
+		const tree = document.querySelector('.tree');
+		function placeDecoration(e) {
+			if (decSelector.value !== "") {
+				const decoration = document.createElement('div');
+				decoration.textContent = decSelector.value;
+				decoration.classList.add('decoration');
+				decoration.setAttribute("style", `top: ${e.clientY}px; left: ${e.clientX - 15}px;`);
+				tree.appendChild(decoration);
+			}
+		}
+		tree.addEventListener('click', placeDecoration);
 	</script>
 </body>
 </html>

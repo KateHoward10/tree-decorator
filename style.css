@@ -38,3 +38,9 @@ body {
 	font-size: 3em;
 	text-align: center;
 }
+
+.decoration {
+	position: absolute;
+	font-size: 30px;
+	z-index: 100;
+}
