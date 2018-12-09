@@ -1,12 +1,14 @@
 
 body {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 }
 
 .controls {
+	min-width: 300px;
 	display: flex;
 	flex-direction: column;
+	margin-right: 50px;
 	font-family: 'Helvetica Neue', sans-serif;
 }
 
@@ -15,15 +17,8 @@ body {
 }
 
 .tree-container {
-	width: 100%;
-	height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.tree {
-	width: 452px;
+	margin: 50px;
+	cursor: pointer;
 }
 
 .topper {
@@ -39,8 +34,8 @@ body {
 	text-align: center;
 }
 
-/*.decoration {
-	width: 30px;
-	height: 30px;
+.decoration {
+	position: absolute;
+	font-size: 2em;
 	z-index: 100;
-}*/
+}
