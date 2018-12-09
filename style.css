@@ -17,9 +17,11 @@ body {
 }
 
 .tree-container {
-	margin: 50px;
 	cursor: pointer;
 }
+
+.main-tree {
+	padding: 0 50px;}
 
 .topper {
   width: 100%;
@@ -36,6 +38,6 @@ body {
 
 .decoration {
 	position: absolute;
-	font-size: 2em;
+	font-size: 30px;
 	z-index: 100;
 }

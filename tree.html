@@ -223,8 +223,11 @@
 				const decoration = document.createElement('div');
 				decoration.textContent = decSelector.value;
 				decoration.classList.add('decoration');
-				decoration.setAttribute("style", `top: ${e.clientY + 25}px; left: ${e.clientX - 15}px;`);
+				decoration.setAttribute("style", `top: ${e.clientY - 15}px; left: ${e.clientX - 15}px;`);
 				tree.appendChild(decoration);
+				if (e.clientX < 50 || e.clientX > 470) {
+					decoration.setAttribute("style", `top: 520px; left: ${e.clientX - 15}px;`);
+				}
 			}
 		}
 		tree.addEventListener('click', placeDecoration);
