@@ -34,6 +34,8 @@ body {
 .present-container {
 	font-size: 3em;
 	text-align: center;
+	width: 452px;
+	padding: 0 50px;
 }
 
 .decoration {

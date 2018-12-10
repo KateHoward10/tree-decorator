@@ -218,6 +218,7 @@
 
 		const decSelector = document.querySelector('.decorations');
 		const tree = document.querySelector('.tree-container');
+		const triangles = document.querySelectorAll('#Triangle');
 		function placeDecoration(e) {
 			if (decSelector.value !== "") {
 				const decoration = document.createElement('div');
@@ -225,12 +226,9 @@
 				decoration.classList.add('decoration');
 				decoration.setAttribute("style", `top: ${e.clientY - 15}px; left: ${e.clientX - 15}px;`);
 				tree.appendChild(decoration);
-				if (e.clientX < 50 || e.clientX > 470) {
-					decoration.setAttribute("style", `top: 520px; left: ${e.clientX - 15}px;`);
-				}
 			}
 		}
-		tree.addEventListener('click', placeDecoration);
+		triangles.forEach(triangle => triangle.addEventListener('click', placeDecoration));
 	</script>
 </body>
 </html>
