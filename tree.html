@@ -178,7 +178,7 @@
 		</div>
 		<div class="control">
 			<p>Add a new decoration! Select one here, then click on the tree</p>
-			<select name="decorations" class="decorations">
+			<select name="decoration-select" class="decoration-select">
 				<option value=""> </option>
 				<option value="light">light</option>
 				<option value="⛄">⛄</option>
@@ -193,6 +193,9 @@
 				<option value="🦌">🦌</option>
 				<option value="🛷">🛷</option>
 			</select>
+		</div>
+		<div class="control">
+			<button id="snow">Let it snow</button>
 		</div>
 	</div>
 	<style>
@@ -222,7 +225,7 @@
 		}
 		colourPickers.forEach(picker => picker.addEventListener('change', changeColour));
 
-		const decSelector = document.querySelector('.decorations');
+		const decSelector = document.querySelector('.decoration-select');
 		const tree = document.querySelector('.tree-container');
 		const triangles = document.querySelectorAll('#Triangle');
 		const lightsContainer = document.getElementById('lights-container');
@@ -233,13 +236,14 @@
 					light.classList.add("light");
 					light.setAttribute("cy", `${e.clientY - 82}`);
 					light.setAttribute("cx", `${e.clientX - 58}`);
-					light.setAttribute("r", "3");
+					light.setAttribute("r", "2");
 					lightsContainer.appendChild(light);
 				} else {
 					const decoration = document.createElement('div');
 					decoration.textContent = decSelector.value;
 					decoration.classList.add('decoration');
-					decoration.setAttribute("style", `top: ${e.clientY - 15}px; left: ${e.clientX - 15}px;`);
+					decoration.style.top = `${e.clientY - 15}px`;
+					decoration.style.left = `${e.clientX - 15}px`;
 					tree.appendChild(decoration);
 				}
 			}
@@ -251,6 +255,26 @@
 		}
 		setInterval(twinkle, 1000);
 		twinkle();
+
+		const snowButton = document.getElementById('snow');
+		function letItSnow() {
+			function createFlake() {
+				let flake = document.createElement('div');
+				flake.classList.add('snowflake');
+				flake.style.top = '0px';
+				flake.style.left = `${(Math.random() * 552)}px`;
+				tree.insertBefore(flake, topper);
+				function snowfall() {
+					let topValue = window.getComputedStyle(flake).getPropertyValue('top');
+					flake.style.top = `${parseInt(topValue.slice(0, topValue.length-2), 10) + 1}px`;
+				}
+				setInterval(snowfall, (Math.random() * 100) + 50);
+				snowfall();
+			}
+			setInterval(createFlake, Math.random() * 2000);
+			createFlake();
+		}
+		snowButton.addEventListener('click', letItSnow);
 	</script>
 </body>
 </html>

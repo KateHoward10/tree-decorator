@@ -54,3 +54,12 @@ select, button {
 	font-size: 30px;
 	z-index: 100;
 }
+
+.snowflake {
+	width: 7px;
+	height: 7px;
+	background-color: #fff;
+	border-radius: 50%;
+	position: absolute;
+	z-index: 200;
+}
