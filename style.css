@@ -60,6 +60,7 @@ select, button {
 	height: 7px;
 	background-color: #fff;
 	border-radius: 50%;
+	border-bottom: 1px solid lightgrey;
 	position: absolute;
 	z-index: 200;
 }
