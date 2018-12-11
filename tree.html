@@ -260,7 +260,10 @@
 		const snowButton = document.getElementById('snow-button');
 		const snowContainer = document.querySelector('.snow-container');
 		function letItSnow() {
-			if (!snowContainer.hasChildNodes()) {
+			if (snowButton.textContent === "Stop, it's too snowy 🌨️") {
+				snowButton.textContent = "Let it snow! ❄️";
+				return;
+			} else {
 				function createFlake() {
 					let flake = document.createElement('div');
 					flake.classList.add('snowflake');
@@ -271,17 +274,12 @@
 						let topValue = window.getComputedStyle(flake).getPropertyValue('top');
 						flake.style.top = `${parseInt(topValue.slice(0, topValue.length-2), 10) + 1}px`;
 					}
-					setInterval(snowfall, (Math.random() * 100) + 50);
+					setInterval(snowfall, (Math.random() * 100) + 20);
 					snowfall();
 				}
-				setInterval(createFlake, (Math.random() * 2000) + 1000);
+				setInterval(createFlake, (Math.random() * 2000) + 500);
 				createFlake();
-				snowButton.textContent = "Oh no, it's snowing too much 🌨️";
-			} else {
-				while (snowContainer.hasChildNodes()) {
-					snowContainer.removeChild(snowContainer.lastChild);
-				}
-				snowButton.textContent = "Let it snow! ❄️";
+				snowButton.textContent = "Stop, it's too snowy 🌨️";
 			}
 		}
 		snowButton.addEventListener('click', letItSnow);
