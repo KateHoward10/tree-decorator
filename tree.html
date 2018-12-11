@@ -200,6 +200,9 @@
 			<button id="snow-button">Let it snow! ❄️</button>
 			<button id="stop-button" class="hidden-button">Stop, it's too snowy 🌨️</button>
 		</div>
+		<div class="control">
+			<button id="cat">🐈</button>
+		</div>
 	</div>
 	<div class="ground"></div>
 	<style>
@@ -300,6 +303,16 @@
 		}
 		snowButton.addEventListener('click', letItSnow);
 		stopButton.addEventListener('click', stopSnow);
+
+		const catButton = document.getElementById("cat");
+		function dropDecs() {
+			Array.from(document.querySelectorAll(".decoration")).filter((dec, index) => index % 2 === 1).forEach(decoration => {
+					decoration.style.top = `${(Math.random()*20)+610}px`;
+					decoration.style.transform = `rotate(${(Math.random()*180)-90}deg)`;
+				}
+			);
+		}
+		catButton.addEventListener('click', dropDecs);
 	</script>
 </body>
 </html>
