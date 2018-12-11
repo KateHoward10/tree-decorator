@@ -274,28 +274,34 @@
 			// } else if ("Let it snow! ❄️" === snowButton.textContent) {
 			// 	snowButton.textContent = "Stop, it's too snowy 🌨️";
 			// }
+		let snowing = null;
 
 		function letItSnow() {
-			let flake = document.createElement('div');
-			flake.classList.add('snowflake');
-			flake.style.top = '0px';
-			flake.style.left = `${Math.random() * 552}px`;
-			snowContainer.appendChild(flake);
-			function snowfall() {
-				let topValue = parseInt(flake.style.top.slice(0, flake.style.top.length-2), 10);
-				if (topValue < 650) {
-					flake.style.top = `${topValue + 1}px`;
-				} else {
-					flake.remove();
+			function createFlake() {
+				let flake = document.createElement('div');
+				flake.classList.add('snowflake');
+				flake.style.top = '0px';
+				flake.style.left = `${Math.random() * 552}px`;
+				snowContainer.appendChild(flake);
+				function snowfall() {
+					let topValue = parseInt(flake.style.top.slice(0, flake.style.top.length-2), 10);
+					if (topValue < 650) {
+						flake.style.top = `${topValue + 1}px`;
+					} else {
+						flake.remove();
+					}
 				}
+				setInterval(snowfall, (Math.random() * 100) + 10);
+				snowfall();
 			}
-			setInterval(snowfall, (Math.random() * 100) + 10);
-			snowfall();
+
+			snowing = setInterval(createFlake, 2000);
 		}
 
-		let snowing = setInterval(letItSnow, (Math.random() * 2000) + 1000);
 		function stopSnow() {
-			clearInterval(snowing);
+			if (this.textContent === "Stop, it's too snowy 🌨️") {
+				clearInterval(snowing);
+			}
 		}
 		snowButton.addEventListener('click', letItSnow);
 		stopButton.addEventListener('click', stopSnow);
