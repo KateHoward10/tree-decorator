@@ -75,3 +75,7 @@ select, button {
 	position: absolute;
 	z-index: 200;
 }
+
+.hidden-button {
+	display: none;
+}

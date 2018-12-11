@@ -198,7 +198,7 @@
 		</div>
 		<div class="control">
 			<button id="snow-button">Let it snow! ❄️</button>
-			<button id="stop-button">Stop, it's too snowy 🌨️</button>
+			<button id="stop-button" class="hidden-button">Stop, it's too snowy 🌨️</button>
 		</div>
 	</div>
 	<div class="ground"></div>
@@ -267,16 +267,11 @@
 		const snowButton = document.getElementById('snow-button');
 		const stopButton = document.getElementById('stop-button');
 		const snowContainer = document.querySelector('.snow-container');
-		
-			// if ("Stop, it's too snowy 🌨️" === snowButton.textContent) {
-			// 	clearInterval(snowing);
-			// 	snowButton.textContent = "Let it snow! ❄️";
-			// } else if ("Let it snow! ❄️" === snowButton.textContent) {
-			// 	snowButton.textContent = "Stop, it's too snowy 🌨️";
-			// }
 		let snowing = null;
 
 		function letItSnow() {
+			stopButton.classList.remove("hidden-button");
+			snowButton.classList.add("hidden-button");
 			function createFlake() {
 				let flake = document.createElement('div');
 				flake.classList.add('snowflake');
@@ -299,9 +294,9 @@
 		}
 
 		function stopSnow() {
-			if (this.textContent === "Stop, it's too snowy 🌨️") {
-				clearInterval(snowing);
-			}
+			snowButton.classList.remove("hidden-button");
+			stopButton.classList.add("hidden-button");
+			clearInterval(snowing);
 		}
 		snowButton.addEventListener('click', letItSnow);
 		stopButton.addEventListener('click', stopSnow);
