@@ -80,8 +80,3 @@ select, button {
 	display: none;
 }
 
-.cat {
-	font-size: 50px;
-	position: absolute;
-	z-index: 200;
-}

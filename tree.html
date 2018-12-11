@@ -237,15 +237,15 @@
 		const decSelector = document.querySelector('.decoration-select');
 		const tree = document.querySelector('.tree-container');
 		const triangles = document.querySelectorAll('#Triangle');
-		const lightsContainer = document.getElementById('lights-container');
+		let lightsContainer = document.getElementById('lights-container');
 		function placeDecoration(e) {
 			if (decSelector.value !== "") {
 				if (decSelector.value === "light") {			
 					const light = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
-					light.classList.add("light");
+					light.setAttribute("fill", "#FFFF00");
 					light.setAttribute("cy", `${e.clientY - 82}`);
 					light.setAttribute("cx", `${e.clientX - 58}`);
-					light.setAttribute("r", "2");
+					light.setAttribute("r", "1");
 					lightsContainer.appendChild(light);
 				} else {
 					const decoration = document.createElement('div');
@@ -261,10 +261,12 @@
 
 		function twinkle() {
 			if (lightsContainer.hasChildNodes()) {
-				lightsContainer.setAttribute('fill', `rgba(255,255,${Math.random()*255},${Math.random()*100})`);
+				Array.from(lightsContainer.querySelectorAll('circle')).forEach(light => {
+					light.setAttribute('r', `${Math.random()+1}`);
+				});
 			}
 		}
-		setInterval(twinkle, 1000);
+		setInterval(twinkle, 500);
 		twinkle();
 
 		const snowButton = document.getElementById('snow-button');
@@ -307,7 +309,7 @@
 		const catButton = document.getElementById("cat");
 		function dropDecs() {
 			Array.from(document.querySelectorAll(".decoration")).filter((dec, index) => index % 2 === 1).forEach(decoration => {
-					decoration.style.top = `${(Math.random()*20)+610}px`;
+					decoration.style.top = `${(Math.random()*30)+610}px`;
 					decoration.style.transform = `rotate(${(Math.random()*180)-90}deg)`;
 				}
 			);

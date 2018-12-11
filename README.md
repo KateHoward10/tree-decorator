@@ -95,9 +95,13 @@ When I came to add lights (i.e. `<circle />`s with a radius of 3px) I worked out
 Next, I wanted to make the lights twinkly. This was done with a function that changes their rgba colour every second, selecting a random value for b (which makes it somewhere between white and yellow, as r and g are set to maximum) and a, which makes it anything from transparent to opaque. It’s quite subtle and fairly twinkly, although sometimes it does look like all the lights have broken.
 ```
 function twinkle() {
-	lightsContainer.setAttribute('fill', `rgba(255,255,${Math.random()*255},${Math.random()*100})`);
+	if (lightsContainer.hasChildNodes()) {
+		Array.from(lightsContainer.querySelectorAll('circle')).forEach(light => {
+			light.setAttribute('r', `${Math.random()+1}`);
+		});
+	}
 }
-setInterval(twinkle, 1000);
+setInterval(twinkle, 500);
 twinkle();
 ```
 ### Let it snow
