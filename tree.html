@@ -178,6 +178,10 @@
 			<input class="colour-picker" type="color" name="secondary-colour" value="#DAA520">
 		</div>
 		<div class="control">
+			<label for="tinsel-colour">Change tinsel colour</label>
+			<input class="colour-picker" type="color" name="tinsel-colour" value="#C0C0C0">
+		</div>
+		<div class="control">
 			<p>Add a new decoration! Select one here, then click on the tree</p>
 			<select name="decoration-select" class="decoration-select">
 				<option value=""> </option>
@@ -266,15 +270,17 @@
 		const mainTree = document.querySelector(".main-tree");
 		function startTinsel(e) {
 			if (decSelector.value === "tinsel") {
-				startX = e.clientX;
-				startY = e.clientY;
+				startX = e.clientX - 58;
+				startY = e.clientY - 82;
 			}
 		}
 		function endTinsel(e) {
 			if (decSelector.value === "tinsel") {
 				const tinsel = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+				let endX = e.clientX - 58;
+				let endY = e.clientY - 82;
 				tinsel.classList.add("tinsel");
-				tinsel.setAttribute("d", `M ${startX - 58},${startY - 82} L ${e.clientX - 58},${e.clientY - 82}`);
+				tinsel.setAttribute("d", `M ${startX},${startY} C ${startX},${startY+18} ${endX},${endY+18} ${endX},${endY} `);
 				mainTree.appendChild(tinsel);
 			}
 		}
