@@ -199,10 +199,13 @@
 		<div class="control">
 			<button id="snow-button">Let it snow! ❄️</button>
 			<button id="stop-button" class="hidden-button">Stop, it's too snowy 🌨️</button>
+			<audio id="sleigh-bells" src="sounds/sleigh-bells.mp3"></audio>
 		</div>
 		<div class="control">
 			<button id="cat-button">🐈</button>
+			<audio id="cat-meow" src="sounds/cat-meow.mp3"></audio>
 		</div>
+		<p><a href="http://soundbible.com/1256-Sleigh-Bells-Ringing.html">Sleigh bell</a> and <a href="http://soundbible.com/674-Cat-Meow.html">cat</a> sounds recorded by Mike Koenig</p>
 	</div>
 	<div class="ground"></div>
 
@@ -267,11 +270,13 @@
 		const snowButton = document.getElementById('snow-button');
 		const stopButton = document.getElementById('stop-button');
 		const snowContainer = document.querySelector('.snow-container');
+		const sleighBellsSound = document.getElementById('sleigh-bells');
 		let snowing = null;
 
 		function letItSnow() {
 			stopButton.classList.remove("hidden-button");
 			snowButton.classList.add("hidden-button");
+			sleighBellsSound.play();
 			function createFlake() {
 				let flake = document.createElement('div');
 				flake.classList.add('snowflake');
@@ -302,7 +307,9 @@
 		stopButton.addEventListener('click', stopSnow);
 
 		const catButton = document.getElementById("cat-button");
+		const catSound = document.getElementById("cat-meow");
 		function dropDecs() {
+			catSound.play();
 			Array.from(document.querySelectorAll(".decoration")).filter((dec, index) => index % 2 === 1).forEach(decoration => {
 				decoration.style.top = `${(Math.random()*30)+610}px`;
 				decoration.style.transform = `rotate(${(Math.random()*180)-90}deg)`;
