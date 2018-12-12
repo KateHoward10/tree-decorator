@@ -3,7 +3,7 @@
 	--primary-colour: #ff0000;
 	--secondary-colour: #DAA520;
 }
-		
+
 body {
 	display: flex;
 	justify-content: space-between;
@@ -25,6 +25,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	margin-right: 50px;
+	text-align: center;
 	font-family: 'Helvetica Neue', sans-serif;
 }
 
@@ -34,6 +35,12 @@ body {
 
 select, button {
 	font-size: 1.2em;
+}
+
+.sound-effect-box {
+	border: 1px solid grey;
+	border-radius: 5px;
+	margin: 0 20px;
 }
 
 .tree-container {

@@ -159,8 +159,7 @@
 		<div class="present-container"></div>
 	</div>
 	<div class="controls">
-		<h2>Controls</h2>
-		<p>Customise your tree!</p>
+		<h3>Customise your tree!</h3>
 		<div class="control">
 			<select name="toppers" class="toppers">
 				<option value="⭐">⭐</option>
@@ -196,16 +195,20 @@
 				<option value="🛷">🛷</option>
 			</select>
 		</div>
-		<div class="control">
-			<button id="snow-button">Let it snow! ❄️</button>
-			<button id="stop-button" class="hidden-button">Stop, it's too snowy 🌨️</button>
-			<audio id="sleigh-bells" src="sounds/sleigh-bells.mp3"></audio>
+		<div class="sound-effect-box">
+			<h4>Sound Effect Zone 🎧</h4>
+			<div class="control">
+				<button id="snow-button">Let it snow! ❄️</button>
+				<button id="stop-button" class="hidden-button">Stop, it's too snowy 🌨️</button>
+				<audio id="sleigh-bells" src="sounds/sleigh-bells.mp3"></audio>
+			</div>
+			<div class="control">
+				<button id="cat-button">🐈</button>
+				<p id="cat-warning"></p>
+				<audio id="cat-meow" src="sounds/cat-meow.mp3"></audio>
+			</div>
+			<p>Sounds <a href="http://soundbible.com/1256-Sleigh-Bells-Ringing.html">1</a> and <a href="http://soundbible.com/674-Cat-Meow.html">2</a> recorded by Mike Koenig</p>
 		</div>
-		<div class="control">
-			<button id="cat-button">🐈</button>
-			<audio id="cat-meow" src="sounds/cat-meow.mp3"></audio>
-		</div>
-		<p><a href="http://soundbible.com/1256-Sleigh-Bells-Ringing.html">Sleigh bell</a> and <a href="http://soundbible.com/674-Cat-Meow.html">cat</a> sounds recorded by Mike Koenig</p>
 	</div>
 	<div class="ground"></div>
 
@@ -308,12 +311,18 @@
 
 		const catButton = document.getElementById("cat-button");
 		const catSound = document.getElementById("cat-meow");
+		const catWarning = document.getElementById("cat-warning");
 		function dropDecs() {
-			catSound.play();
-			Array.from(document.querySelectorAll(".decoration")).filter((dec, index) => index % 2 === 1).forEach(decoration => {
-				decoration.style.top = `${(Math.random()*30)+610}px`;
-				decoration.style.transform = `rotate(${(Math.random()*180)-90}deg)`;
-			});
+			if (!document.querySelectorAll(".decoration").length) {
+				catWarning.textContent = "Add some decorations first!";
+			} else {
+				catWarning.textContent = "";
+				catSound.play();
+				Array.from(document.querySelectorAll(".decoration")).filter((dec, index) => index % 2 === 1).forEach(decoration => {
+					decoration.style.top = `${(Math.random()*30)+610}px`;
+					decoration.style.transform = `rotate(${(Math.random()*180)-90}deg)`;
+				});
+			}
 		}
 		catButton.addEventListener('click', dropDecs);
 	</script>
