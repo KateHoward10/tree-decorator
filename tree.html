@@ -201,16 +201,11 @@
 			<button id="stop-button" class="hidden-button">Stop, it's too snowy 🌨️</button>
 		</div>
 		<div class="control">
-			<button id="cat">🐈</button>
+			<button id="cat-button">🐈</button>
 		</div>
 	</div>
 	<div class="ground"></div>
-	<style>
-		:root {
-			--primary-colour: #ff0000;
-			--secondary-colour: #DAA520;
-		}
-	</style>
+
 	<script>
 		const topSelector = document.querySelector('.toppers');
 		const topper = document.querySelector('.topper');
@@ -261,7 +256,7 @@
 
 		function twinkle() {
 			if (lightsContainer.hasChildNodes()) {
-				Array.from(lightsContainer.querySelectorAll('circle')).forEach(light => {
+				lightsContainer.querySelectorAll('circle').forEach(light => {
 					light.setAttribute('r', `${Math.random()+1}`);
 				});
 			}
@@ -281,7 +276,7 @@
 				let flake = document.createElement('div');
 				flake.classList.add('snowflake');
 				flake.style.top = '0px';
-				flake.style.left = `${Math.random() * 552}px`;
+				flake.style.left = `${Math.random() * window.innerWidth}px`;
 				snowContainer.appendChild(flake);
 				function snowfall() {
 					let topValue = parseInt(flake.style.top.slice(0, flake.style.top.length-2), 10);
@@ -306,13 +301,12 @@
 		snowButton.addEventListener('click', letItSnow);
 		stopButton.addEventListener('click', stopSnow);
 
-		const catButton = document.getElementById("cat");
+		const catButton = document.getElementById("cat-button");
 		function dropDecs() {
 			Array.from(document.querySelectorAll(".decoration")).filter((dec, index) => index % 2 === 1).forEach(decoration => {
-					decoration.style.top = `${(Math.random()*30)+610}px`;
-					decoration.style.transform = `rotate(${(Math.random()*180)-90}deg)`;
-				}
-			);
+				decoration.style.top = `${(Math.random()*30)+610}px`;
+				decoration.style.transform = `rotate(${(Math.random()*180)-90}deg)`;
+			});
 		}
 		catButton.addEventListener('click', dropDecs);
 	</script>

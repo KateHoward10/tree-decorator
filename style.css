@@ -1,4 +1,9 @@
 
+:root {
+	--primary-colour: #ff0000;
+	--secondary-colour: #DAA520;
+}
+		
 body {
 	display: flex;
 	justify-content: space-between;
