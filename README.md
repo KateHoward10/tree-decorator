@@ -3,6 +3,7 @@
 
 ### Created svg tree
 First of all, I created a basic tree in Sketch. As you can see it’s comprised of four overlapping, mathematically beautiful right-angled triangles. Later, I added a few shadows to each triangle (with some inner shadows for the baubles) to make it look marginally more realistic, and this code got rather more complex.
+![The first tree in Sketch](screenshots/original-tree.png)
 ```
 <svg width="420px" height="507px" viewBox="0 0 420 507">
     <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -36,6 +37,7 @@ I started off with something basic, which was the decoration to sit at the top o
 
 ### Added Add Present
 In a similar vein, I added an event listener to a button labelled "Add present", which adds a present emoji to the textContent of the present container (making sure to set its width to match that of the tree, or it all ends up a mess).
+![The tree with presents](screenshots/tree-with-presents.png)
 
 ### Baubles
 Time to make things a bit more interesting. I went back to Sketch to add baubles on each branch, then set about letting the user set their colour. This was done with custom CSS properties, which are set on the root element with the prefix `--`...
@@ -67,6 +69,7 @@ colourPickers.forEach(picker => picker.addEventListener('change', changeColour))
 
 ### Decorations
 Once it was 3-D the tree called out for more decorations. I added a 'click' event listener to the tree itself that adds a div to the DOM, setting its top and left values according to the coordinates of the MouseEvent (e.clientX and e.clientY). Its textContent is set to the value of a `<select>` element, filled with an increasing variety of emojis that vaguely resemble Christmassy ornaments.
+![The decoration selector](screenshots/decoration-selector.png)
 ```
 const decSelector = document.querySelector('.decorations');
 const tree = document.querySelector('.tree-container');
@@ -110,6 +113,7 @@ This was lovely but as the flakes kept falling forever it made my laptop whir qu
 As the whirring persisted I set about making it possible to stop new snow being created. Originally this was attempted using the same button, which toggled its textContent from "Let it snow! ❄️" to "Stop, it's too snowy 🌨️" when clicked, and used this textContent value to determine what function to perform. This all got horribly confusing and led me to look into various solutions, such as a simple `return;` to exit the letItSnow function, and custom errors with a throw statement.
 
 None of this worked, and what I had missed was that the two buttons have to do two separate things - `letItSnow()` and `stopSnow()`. This was also much easier once they were actually two different buttons (which each toggle the other to a hidden class when clicked, so they appear to be the same button). Crucially, they do both need to refer to `snowing`, the value returned by setting an interval on the `createFlake()` function, so I had to set `snowing` to `null` outside both functions.
+![It's snowing](screenshots/snowing.png)
 
 ```
 const snowButton = document.getElementById('snow-button');
@@ -156,6 +160,7 @@ stopButton.addEventListener('click', stopSnow);
  
 ### Cat Button
 At the request of a colleague I added a cat into the mix, which knocks decorations off. The suggestion was actually to throw a cat into the tree, but I thought that was a bit too ambitious and cruel.
+![A cat has been at this tree](screenshots/fallen-off-decs.png)
 ```
 const catButton = document.getElementById("cat-button");
 function dropDecs() {
