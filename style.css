@@ -9,6 +9,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	background-color: #DCDCDC;
+	font-size: 14px;
 }
 
 .ground {
@@ -36,17 +37,13 @@ body {
 }
 
 .control {
-	margin-bottom: 2em;
-}
-
-select, button {
-	font-size: 1.2em;
+	margin-bottom: 1em;
 }
 
 .sound-effect-box {
 	border: 1px solid grey;
 	border-radius: 5px;
-	margin: 0 20px 20px;
+	margin: 0 10px 10px;
 }
 
 .tree-container {
@@ -89,7 +86,7 @@ select, button {
 	stroke-width: 18;
 	fill: none;
 	stroke-linecap: round;
-	stroke-linejoin: round;
+	/*stroke-linejoin: round;*/
 }
 
 .snowflake {
