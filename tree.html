@@ -249,16 +249,16 @@
 				if (decSelector.value === "light") {			
 					const light = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
 					light.setAttribute("fill", "#FFFF00");
-					light.setAttribute("cy", `${e.clientY - 82}`);
-					light.setAttribute("cx", `${e.clientX - 58}`);
+					light.setAttribute("cy", `${e.offsetY}`);
+					light.setAttribute("cx", `${e.offsetX - 50}`);
 					light.setAttribute("r", "1");
 					lightsContainer.appendChild(light);
 				} else {
 					const decoration = document.createElement('div');
 					decoration.textContent = decSelector.value;
 					decoration.classList.add('decoration');
-					decoration.style.top = `${e.clientY - 15}px`;
-					decoration.style.left = `${e.clientX - 15}px`;
+					decoration.style.top = `${e.offsetY + 70}px`;
+					decoration.style.left = `${e.offsetX - 5}px`;
 					tree.appendChild(decoration);
 				}
 			}
@@ -270,15 +270,15 @@
 		const mainTree = document.querySelector(".main-tree");
 		function startTinsel(e) {
 			if (decSelector.value === "tinsel") {
-				startX = e.clientX - 58;
-				startY = e.clientY - 82;
+				startX = e.offsetX - 50;
+				startY = e.offsetY;
 			}
 		}
 		function endTinsel(e) {
 			if (decSelector.value === "tinsel") {
 				const tinsel = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-				let endX = e.clientX - 58;
-				let endY = e.clientY - 82;
+				let endX = e.offsetX - 50;
+				let endY = e.offsetY;
 				tinsel.classList.add("tinsel");
 				tinsel.setAttribute("d", `M ${startX},${startY} C ${startX},${startY+18} ${endX},${endY+18} ${endX},${endY} `);
 				mainTree.appendChild(tinsel);
